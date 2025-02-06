@@ -13,14 +13,17 @@
         function sendMessage() {
             let name = document.getElementById("name").value;
             let phone = document.getElementById("phone").value;
+            let university = document.getElementById("university").value;
 
-            if (name === "" || phone === "") {
+            if (name === "" || phone === "" || university === "") {
                 alert("Fadlan buuxi dhammaan xogta!");
                 return;
             }
 
             let uniqueID = generateID(); // Samee ID cusub
-            let message = `Salaan ${name}, tani waa fariin toos ah oo WhatsApp ah. Mudane soo dhawoow, maxaan kaa cawinaa? ID-gaaga waa ${uniqueID}.`;
+            let message = `Salaan ${name}, tani waa fariin toos ah oo WhatsApp ah. Mudane soo dhawoow, maxaan kaa cawinaa? ID-gaaga waa ${uniqueID}. 
+            
+            Waa ku mahadsan tahay inaad naga soo booqatay jaamacadda ${university}.`;
 
             let url = "https://api.ultramsg.com/instance106366/messages/chat";
             
@@ -35,7 +38,7 @@
                 body: formData
             })
             .then(response => response.json())
-            .then(data => alert(`Fariin auaa la guu soo diray! `))
+            .then(data => alert(`Fariinta waa la diray!`))
             .catch(error => alert("Khalad ayaa dhacay!"));
         }
     </script>
@@ -48,8 +51,10 @@
         
         <label for="phone" class="block text-gray-600">WhatsApp Number:</label>
         <input type="text" id="phone" class="w-full p-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. +252612345678">
-
         
+        <label for="university" class="block text-gray-600">Jaamacadda:</label>
+        <input type="text" id="university" class="w-full p-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Geli magaca jaamacadda">
+
         <button onclick="sendMessage()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">Send Message</button>
     </div>
 </body>
