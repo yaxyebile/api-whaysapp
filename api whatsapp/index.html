@@ -15,7 +15,7 @@
                 return;
             }
             
-            let message = `Salaan ${name}, tani waa fariin toos ah oo WhatsApp ah mudane soo dhawoow maxaan kaa cawinaa .`;
+            let message = `waa ku salaamay ${name}, tani waa fariin toos ah oo WhatsApp ah mudane soo dhawoow maxaan kaa cawinaa .`;
             let url = "https://api.ultramsg.com/instance106366/messages/chat";
             
             let formData = new URLSearchParams();
@@ -29,7 +29,7 @@
                 body: formData
             })
             .then(response => response.json())
-            .then(data => alert("Fariinta ayaa laguu soo diray!"))
+            .then(data => alert("Fariin ayaa laguu soo diray!"))
             .catch(error => alert("Khalad ayaa dhacay!"));
         }
     </script>
