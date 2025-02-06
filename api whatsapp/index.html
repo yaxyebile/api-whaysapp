@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Auto Message</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function sendMessage() {
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            
+            if (name === "" || phone === "") {
+                alert("Fadlan buuxi dhammaan xogta!");
+                return;
+            }
+            
+            let message = `Salaan ${name}, tani waa fariin toos ah oo WhatsApp ah mudane soo dhawoow maxaan kaa cawinaa .`;
+            let url = "https://api.ultramsg.com/instance106366/messages/chat";
+            
+            let formData = new URLSearchParams();
+            formData.append("token", "jgxv4bcvllrbfiyk"); // Bedel token-kaaga saxda ah
+            formData.append("to", `whatsapp:${phone}`);
+            formData.append("body", message);
+            
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => alert("Fariinta ayaa laguu soo diray!"))
+            .catch(error => alert("Khalad ayaa dhacay!"));
+        }
+    </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h2 class="text-2xl font-bold text-center text-gray-700 mb-4">Foomka WhatsApp</h2>
+        <label for="name" class="block text-gray-600">Magaca:</label>
+        <input type="text" id="name" class="w-full p-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Geli magacaaga">
+        
+        <label for="phone" class="block text-gray-600">WhatsApp Number:</label>
+        <input type="text" id="phone" class="w-full p-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. +252612345678">
+        
+        <button onclick="sendMessage()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">Send Message</button>
+    </div>
+</body>
+</html>
