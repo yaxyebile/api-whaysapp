@@ -6,16 +6,22 @@
     <title>WhatsApp Auto Message</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        function generateID() {
+            return Math.floor(1000 + Math.random() * 9000); // 4-lambar ID ah
+        }
+
         function sendMessage() {
             let name = document.getElementById("name").value;
             let phone = document.getElementById("phone").value;
-            
+
             if (name === "" || phone === "") {
                 alert("Fadlan buuxi dhammaan xogta!");
                 return;
             }
-            
-            let message = `waa ku salaamay ${name}, tani waa fariin toos ah oo WhatsApp ah mudane soo dhawoow maxaan kaa cawinaa .`;
+
+            let uniqueID = generateID(); // Samee ID cusub
+            let message = `Salaan ${name}, tani waa fariin toos ah oo WhatsApp ah. Mudane soo dhawoow, maxaan kaa cawinaa? ID-gaaga waa ${uniqueID}.`;
+
             let url = "https://api.ultramsg.com/instance106366/messages/chat";
             
             let formData = new URLSearchParams();
@@ -29,7 +35,7 @@
                 body: formData
             })
             .then(response => response.json())
-            .then(data => alert("Fariin ayaa laguu soo diray!"))
+            .then(data => alert(`Fariin auaa la guu soo diray! `))
             .catch(error => alert("Khalad ayaa dhacay!"));
         }
     </script>
@@ -42,6 +48,9 @@
         
         <label for="phone" class="block text-gray-600">WhatsApp Number:</label>
         <input type="text" id="phone" class="w-full p-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. +252612345678">
+
+        <label for="phone" class="block text-gray-600">jaamacadda aad dhigato:</label>
+        <input type="text" id="phone" class="w-full p-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="magaca jaamacadda gali">
         
         <button onclick="sendMessage()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300">Send Message</button>
     </div>
